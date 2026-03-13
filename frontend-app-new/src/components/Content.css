@@ -181,3 +181,9 @@ body{
 .view-cart-btn:hover{
   background:#f3e7dc;
 }
+
+.added-btn{
+  background:#2e7d32;
+  color:white;
+  cursor:not-allowed;
+}

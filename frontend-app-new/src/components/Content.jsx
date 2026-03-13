@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../App";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "./Content.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -9,12 +8,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 function Content() {
 
   const [products, setProducts] = useState([]);
-  const [showMessage, setShowMessage] = useState(false);
-  const [addedProduct, setAddedProduct] = useState("");
 
   const { cart, setCart } = useContext(AppContext);
-
-  const navigate = useNavigate();
 
   const fetchProducts = async () => {
     const url = `${API_URL}/store`;
@@ -36,56 +31,17 @@ function Content() {
 
       setCart([...cart, updatedProduct]);
 
-      setAddedProduct(product.name);
-
-      setShowMessage(true);
-
-      setTimeout(() => {
-        setShowMessage(false);
-      }, 3000);
     }
 
+  };
+
+  const isInCart = (id) => {
+    return cart.some((item) => item._id === id);
   };
 
   return (
     <div>
 
-      {/* Add to cart notification */}
-      {showMessage && (
-        <div className="cart-notification">
-
-          <span>✔ {addedProduct} added to cart</span>
-
-          <button
-            className="view-cart-btn"
-            onClick={() => navigate("/cart")}
-          >
-            View Cart
-          </button>
-
-        </div>
-      )}
-
-
-      {/* Cafe Intro */}
-      <div className="cafe-intro">
-        <h2 className="cafe-heading">
-          Welcome to Cup & Co. ☕
-        </h2>
-
-        <p className="cafe-desc">
-          Crafted coffee, cozy vibes, and flavors worth sharing.
-        </p>
-      </div>
-
-
-      {/* Menu */}
-      <div className="products-title">
-        <h2>Our Menu</h2>
-      </div>
-
-
-      {/* Products */}
       <div className="row">
 
         {products.map((product) => (
@@ -103,8 +59,12 @@ function Content() {
 
             <h4>₹{product.price}</h4>
 
-            <button onClick={() => addToCart(product)}>
-              Add to Cart
+            <button
+              className={isInCart(product._id) ? "added-btn" : ""}
+              onClick={() => addToCart(product)}
+              disabled={isInCart(product._id)}
+            >
+              {isInCart(product._id) ? "Added ✓" : "Add to Cart"}
             </button>
 
           </div>
