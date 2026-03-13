@@ -1,0 +1,92 @@
+/* Page layout */
+
+.login-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:80vh;
+  background:#faf6f1;
+}
+
+
+/* Login Card */
+
+.login-card{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  width:320px;
+  text-align:center;
+  box-shadow:0 6px 25px rgba(0,0,0,0.1);
+}
+
+
+/* Title */
+
+.login-title{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  color:#6b3e26;
+  margin-bottom:5px;
+}
+
+
+/* Subtitle */
+
+.login-subtitle{
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+  color:#777;
+  margin-bottom:25px;
+}
+
+
+/* Inputs */
+
+.login-card input{
+  width:100%;
+  padding:10px;
+  margin-bottom:15px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+}
+
+
+/* Button */
+
+.login-btn{
+  width:100%;
+  padding:10px;
+  background:#6b3e26;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-family:'Poppins',sans-serif;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.login-btn:hover{
+  background:#c97b3c;
+}
+
+
+/* Register text */
+
+.register-text{
+  margin-top:15px;
+  font-family:'Poppins',sans-serif;
+  font-size:13px;
+}
+
+.register-text a{
+  color:#c97b3c;
+  text-decoration:none;
+}
+
+.register-text a:hover{
+  text-decoration:underline;
+}

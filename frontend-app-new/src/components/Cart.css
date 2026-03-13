@@ -1,0 +1,126 @@
+/* Page layout */
+
+.cart-container{
+  padding:40px;
+  background:#faf6f1;
+  min-height:100vh;
+}
+
+
+/* Title */
+
+.cart-title{
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  color:#6b3e26;
+  margin-bottom:30px;
+}
+
+
+/* Empty Cart */
+
+.empty-cart{
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+  color:#555;
+}
+
+
+/* Items container */
+
+.cart-items{
+  max-width:700px;
+  margin:auto;
+}
+
+
+/* Card */
+
+.cart-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+
+/* Product Info */
+
+.cart-info h3{
+  font-family:'Playfair Display',serif;
+  color:#6b3e26;
+}
+
+.price{
+  font-family:'Poppins',sans-serif;
+  color:#777;
+}
+
+
+/* Quantity */
+
+.quantity-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.quantity-controls button{
+  background:#6b3e26;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.quantity-controls span{
+  font-family:'Poppins',sans-serif;
+  font-size:16px;
+}
+
+
+/* Item total */
+
+.item-total{
+  font-family:'Poppins',sans-serif;
+  font-weight:600;
+  color:#c97b3c;
+}
+
+
+/* Order summary */
+
+.order-summary{
+  text-align:center;
+  margin-top:30px;
+}
+
+.order-summary h2{
+  font-family:'Playfair Display',serif;
+  color:#6b3e26;
+}
+
+
+/* Button */
+
+.order-btn{
+  margin-top:15px;
+  background:#6b3e26;
+  color:white;
+  border:none;
+  padding:12px 25px;
+  font-family:'Poppins',sans-serif;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.order-btn:hover{
+  background:#c97b3c;
+}
