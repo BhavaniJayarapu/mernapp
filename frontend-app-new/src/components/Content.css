@@ -152,3 +152,32 @@ body{
   color:#6b3e26;
   margin-bottom:10px;
 }
+.cart-notification{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#6b3e26;
+  color:white;
+  padding:15px 20px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  font-family:'Poppins',sans-serif;
+  box-shadow:0 5px 18px rgba(0,0,0,0.2);
+  z-index:1000;
+}
+
+.view-cart-btn{
+  background:white;
+  color:#6b3e26;
+  border:none;
+  padding:6px 12px;
+  border-radius:5px;
+  cursor:pointer;
+  font-weight:500;
+}
+
+.view-cart-btn:hover{
+  background:#f3e7dc;
+}

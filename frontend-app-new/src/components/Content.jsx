@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../App";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./Content.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -8,9 +9,12 @@ const API_URL = import.meta.env.VITE_API_URL;
 function Content() {
 
   const [products, setProducts] = useState([]);
-  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+  const [addedProduct, setAddedProduct] = useState("");
 
   const { cart, setCart } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const fetchProducts = async () => {
     const url = `${API_URL}/store`;
@@ -27,23 +31,41 @@ function Content() {
     const found = cart.find((item) => item._id === product._id);
 
     if (!found) {
-      product.quantity = 1;
-      setCart([...cart, product]);
-      setMessage(`${product.name} added to cart ☕`);
-    } else {
-      setMessage(`${product.name} is already in cart`);
+
+      const updatedProduct = { ...product, quantity: 1 };
+
+      setCart([...cart, updatedProduct]);
+
+      setAddedProduct(product.name);
+
+      setShowMessage(true);
+
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
     }
 
-    setTimeout(() => {
-      setMessage("");
-    }, 2000);
   };
 
   return (
     <div>
 
-      {/* Message Notification */}
-      {message && <div className="cart-message">{message}</div>}
+      {/* Add to cart notification */}
+      {showMessage && (
+        <div className="cart-notification">
+
+          <span>✔ {addedProduct} added to cart</span>
+
+          <button
+            className="view-cart-btn"
+            onClick={() => navigate("/cart")}
+          >
+            View Cart
+          </button>
+
+        </div>
+      )}
+
 
       {/* Cafe Intro */}
       <div className="cafe-intro">
@@ -56,12 +78,16 @@ function Content() {
         </p>
       </div>
 
+
       {/* Menu */}
       <div className="products-title">
         <h2>Our Menu</h2>
       </div>
 
+
+      {/* Products */}
       <div className="row">
+
         {products.map((product) => (
 
           <div className="box" key={product._id}>
@@ -84,6 +110,7 @@ function Content() {
           </div>
 
         ))}
+
       </div>
 
     </div>
