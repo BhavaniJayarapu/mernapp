@@ -8,6 +8,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 function Content() {
 
   const [products, setProducts] = useState([]);
+  const [message, setMessage] = useState("");
+
   const { cart, setCart } = useContext(AppContext);
 
   const fetchProducts = async () => {
@@ -21,20 +23,30 @@ function Content() {
   }, []);
 
   const addToCart = (product) => {
+
     const found = cart.find((item) => item._id === product._id);
 
     if (!found) {
       product.quantity = 1;
       setCart([...cart, product]);
+      setMessage(`${product.name} added to cart ☕`);
+    } else {
+      setMessage(`${product.name} is already in cart`);
     }
+
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
   };
 
   return (
     <div>
 
-      {/* Cafe Intro Section */}
-      <div className="cafe-intro">
+      {/* Message Notification */}
+      {message && <div className="cart-message">{message}</div>}
 
+      {/* Cafe Intro */}
+      <div className="cafe-intro">
         <h2 className="cafe-heading">
           Welcome to Cup & Co. ☕
         </h2>
@@ -42,19 +54,14 @@ function Content() {
         <p className="cafe-desc">
           Crafted coffee, cozy vibes, and flavors worth sharing.
         </p>
-
       </div>
 
-
-      {/* Menu Section */}
+      {/* Menu */}
       <div className="products-title">
         <h2>Our Menu</h2>
       </div>
 
-
-      {/* Products */}
       <div className="row">
-
         {products.map((product) => (
 
           <div className="box" key={product._id}>
@@ -77,7 +84,6 @@ function Content() {
           </div>
 
         ))}
-
       </div>
 
     </div>
