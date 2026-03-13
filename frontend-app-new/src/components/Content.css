@@ -220,3 +220,33 @@ body{
 .view-cart-btn:hover{
   background:#222;
 }
+
+/* Floating Cart Button */
+
+.floating-cart-btn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#6b3e26;
+  color:white;
+  border:none;
+  padding:14px 22px;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  font-family:'Poppins',sans-serif;
+  transition:0.3s;
+}
+
+.floating-cart-btn:hover{
+  background:#c97b3c;
+}
+
+
+/* Added button */
+
+.added-btn{
+  background:#2e7d32;
+  cursor:not-allowed;
+}

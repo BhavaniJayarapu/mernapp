@@ -9,6 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 function Content() {
 
   const [products, setProducts] = useState([]);
+  const [showCartBtn, setShowCartBtn] = useState(false);
 
   const { cart, setCart } = useContext(AppContext);
 
@@ -33,6 +34,8 @@ function Content() {
       const updatedProduct = { ...product, quantity: 1 };
 
       setCart([...cart, updatedProduct]);
+
+      setShowCartBtn(true);
 
     }
 
@@ -73,32 +76,30 @@ function Content() {
 
             <h4>₹{product.price}</h4>
 
-            <div className="product-buttons">
-
-              <button
-                className={isInCart(product._id) ? "added-btn" : ""}
-                onClick={() => addToCart(product)}
-                disabled={isInCart(product._id)}
-              >
-                {isInCart(product._id) ? "Added ✓" : "Add to Cart"}
-              </button>
-
-              {isInCart(product._id) && (
-                <button
-                  className="view-cart-btn"
-                  onClick={() => navigate("/cart")}
-                >
-                  View Cart
-                </button>
-              )}
-
-            </div>
+            <button
+              className={isInCart(product._id) ? "added-btn" : ""}
+              onClick={() => addToCart(product)}
+              disabled={isInCart(product._id)}
+            >
+              {isInCart(product._id) ? "Added ✓" : "Add to Cart"}
+            </button>
 
           </div>
 
         ))}
 
       </div>
+
+      {/* Floating View Cart Button */}
+
+      {showCartBtn && (
+        <button
+          className="floating-cart-btn"
+          onClick={() => navigate("/cart")}
+        >
+          🛒 View Cart
+        </button>
+      )}
 
     </div>
   );
