@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../App";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Content.css";
 
@@ -10,6 +11,8 @@ function Content() {
   const [products, setProducts] = useState([]);
 
   const { cart, setCart } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const fetchProducts = async () => {
     const url = `${API_URL}/store`;
@@ -42,6 +45,17 @@ function Content() {
   return (
     <div>
 
+      <div className="cafe-intro">
+        <h2 className="cafe-heading">Welcome to Cup & Co. ☕</h2>
+        <p className="cafe-desc">
+          Crafted coffee, cozy vibes, and flavors worth sharing.
+        </p>
+      </div>
+
+      <div className="products-title">
+        <h2>Our Menu</h2>
+      </div>
+
       <div className="row">
 
         {products.map((product) => (
@@ -59,13 +73,26 @@ function Content() {
 
             <h4>₹{product.price}</h4>
 
-            <button
-              className={isInCart(product._id) ? "added-btn" : ""}
-              onClick={() => addToCart(product)}
-              disabled={isInCart(product._id)}
-            >
-              {isInCart(product._id) ? "Added ✓" : "Add to Cart"}
-            </button>
+            <div className="product-buttons">
+
+              <button
+                className={isInCart(product._id) ? "added-btn" : ""}
+                onClick={() => addToCart(product)}
+                disabled={isInCart(product._id)}
+              >
+                {isInCart(product._id) ? "Added ✓" : "Add to Cart"}
+              </button>
+
+              {isInCart(product._id) && (
+                <button
+                  className="view-cart-btn"
+                  onClick={() => navigate("/cart")}
+                >
+                  View Cart
+                </button>
+              )}
+
+            </div>
 
           </div>
 
